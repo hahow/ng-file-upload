@@ -824,7 +824,10 @@ ngFileUpload.directive('ngfSelect', ['$parse', '$timeout', '$compile', 'Upload',
       }
 
       var clickEvent = new MouseEvent('click', {
-        relatedTarget: evt.target
+        'view': window,
+        'bubbles': true,
+        'cancelable': true,
+        'relatedTarget': evt.currentTarget
       });
 
       if (isDelayedClickSupported(navigator.userAgent)) {
