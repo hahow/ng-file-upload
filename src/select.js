@@ -128,12 +128,20 @@ ngFileUpload.directive('ngfSelect', ['$parse', '$timeout', '$compile', 'Upload',
       } catch (e) {/*ignore*/
       }
 
+      // custom click event data
+      var clickEvent = new MouseEvent('click', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true,
+        'relatedTarget': evt.currentTarget
+      });
+
       if (isDelayedClickSupported(navigator.userAgent)) {
         setTimeout(function () {
-          fileElem[0].click();
+          fileElem[0].dispatchEvent(clickEvent);
         }, 0);
       } else {
-        fileElem[0].click();
+        fileElem[0].dispatchEvent(clickEvent);
       }
 
       return false;
